@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <h1>Enter Your Text</h1>
+    <form action="/analyze" method="get">
+        <textarea name="text"></textarea><br>
+        <input type="checkbox" name="removepunc">Remove Punctuation <br>
+        <input type="checkbox" name="capitilized">Capitalized <br>
+        <input type="checkbox" name="charcount">character Count <br>
+        <input type="checkbox" name="removespace">Remove space <br>
+        <input type="radio" name="case" value="uppercase"> uppercase
+        <input type="radio" name="case" value="lowercase"> Lowercase <br> <br>
+        <button type="submit">Analyze</button>
+    </form>
+</body>
+</html>
