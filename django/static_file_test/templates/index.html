@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Static things</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    
+    <h1>Hello Static CSS!</h1>
+    
+    {% load static %}
+    <p>Image 1</p> <br>
+    <img src="{%static '1.png' %}" alt="Not available">
+    <p>Image 2</p>
+    <img src="{%static '2.png' %}" alt="Not available">
+    <br>
+    <br>
+
+    <a href= "{%static 'info.txt' %}">Click here to read Info</a>
+</body>
+</html>
