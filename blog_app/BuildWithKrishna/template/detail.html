@@ -1,0 +1,25 @@
+{% extends 'basics.html' %}
+{% block title %}
+Detail Post
+{% endblock title%}
+
+{% block body %}
+<div class="container my-5">
+    <div class="card mb-3 shadow-sm">
+        {% if post.post_image %}
+        <img src="{{ post.post_image.url }}" 
+             class="card-img-top" 
+             alt="{{ post.post_title }}"
+             style="width: 100%; max-height: 450px; object-fit: contain;">
+        {% endif %}
+        <div class="card-body">
+            <h5 class="card-title">{{ post.post_title }}</h5>
+            <h6 class="text-muted">Author: {{ post.post_author }}</h6>
+            <p class="card-text mt-3">{{ post.post_content|linebreaks }}</p>
+            <p class="card-text">
+                <small class="text-body-secondary">{{ post.post_time|date:"F j, Y, g:i a" }}</small>
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock body %}

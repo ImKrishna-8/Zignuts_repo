@@ -1,0 +1,26 @@
+{%extends 'basics.html' %}
+
+{% block title %}
+Create Post
+{% endblock title %}
+
+{% block body %}
+<form action="/create" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="container">
+        <div class="mb-3 my-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" id="title" name="title" placeholder="Title">
+        </div>
+        <div class="mb-3">
+            <label for="content" class="form-label">Content</label>
+            <textarea class="form-control" id="content" name="content" rows="3"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="image" class="form-label">upload Thumbnail</label>
+            <input class="form-control form-control-sm" id="image" name="thumbnail" type="file">
+        </div>
+        <button type="submit" class="btn btn-secondary">View In details</button>
+    </div>
+</form>
+{% endblock body %}

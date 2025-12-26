@@ -1,0 +1,46 @@
+{% extends 'basics.html' %}
+
+{% block title %}
+All Posts
+{% endblock title %}
+
+{% block body %}
+
+{% if posts|length == 0 %}
+    <h1>No Post Found</h1>
+{% endif %}
+
+<div class="album py-5 bg-body-tertiary">
+    <div class="container">
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            {% for post in posts %}
+            <div class="col">
+                <div class="card shadow-sm">
+
+                    <img src="{{ post.post_image.url }}" class="card-img-top" alt="{{ post.post_title }}" style="height: 225px;
+    width: 100%;
+    object-fit: cover;">
+
+                    <div class="card-body">
+                        <h5 class="card-title">{{ post.post_title }}</h5>
+                        <p class="card-text">{{ post.post_content | truncatewords:5}}</p>
+
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                {{ post.post_author }}
+                            </div>
+                            <small class="text-body-secondary">
+                                {{ post.post_time }}
+                            </small>
+                            <a href="/detail/{{post.post_id}}" type="button" class="btn btn-secondary">View In details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</div>
+{% endblock body %}

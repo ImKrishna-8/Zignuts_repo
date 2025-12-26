@@ -1,0 +1,105 @@
+{% extends "basics.html" %}
+
+{% block title %} BuildWithKrishna {% endblock title %}
+{% block css %}
+<style>
+    .hero {
+        background: linear-gradient(135deg, #92959b, #47454a);
+        color: white;
+        padding: 80px 20px;
+        border-radius: 0 0 40px 40px;
+    }
+
+    .hero h1 span {
+        color: #ffc107;
+    }
+
+    .blog-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .blog-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    footer {
+        background: #0b0f19;
+        color: #aaa;
+    }
+</style>
+
+{% endblock css %}
+
+{% block body %}
+<!-- Hero Section -->
+<section class="hero text-center">
+    <div class="container">
+        <h1 class="display-5 fw-bold">
+            Learn. Build. Grow with <span>BuildWithKrishna</span>
+        </h1>
+        <p class="lead mt-3">
+            Practical blogs on development, projects, and real-world coding.
+        </p>
+        <a href="/allpost" class="btn btn-warning btn-lg mt-4 px-4 fw-semibold">
+            Explore Blogs
+        </a>
+    </div>
+</section>
+
+<!-- Blog Cards -->
+{% if posts|length > 0 %}
+<section class="container my-5">
+    <h2 class="text-center fw-bold mb-4">Latest Blogs</h2>
+    <div class="row g-4">
+
+        <div class="col-md-4">
+            <div class="card blog-card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">{{posts.0.post_title}}</h5>
+                    <p class="card-text text-muted">
+                        {{posts.0.post_content|truncatewords:6 }}
+                    </p>
+                    <a href="detail/{{posts.0.post_id}}" class="btn btn-outline-primary btn-sm">Read More</a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% if posts|length > 1 %}
+
+        <div class="col-md-4">
+            <div class="card blog-card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">{{posts.1.post_title}}</h5>
+                    <p class="card-text text-muted">
+                        {{posts.1.post_content|truncatewords:6 }}
+                    </p>
+                    <a href="detail/{{posts.1.post_id}}" class="btn btn-outline-primary btn-sm">Read More</a>
+                </div>
+            </div>
+        </div>
+   {% endif %}
+{% if posts|length > 2 %}
+        <div class="col-md-4">
+            <div class="card blog-card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">{{posts.2.post_title}}</h5>
+                    <p class="card-text text-muted">
+                        {{posts.2.post_content|truncatewords:6 }}
+                    </p>
+                    <a href="detail/{{posts.2.post_id}}" class="btn btn-outline-primary btn-sm">Read More</a>
+                </div>
+            </div>
+        </div>
+   {% endif %}
+
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="text-center py-4 mt-5">
+    <p class="mb-1">© 2025 BuildWithKrishna</p>
+    <small>Built with passion and clean code.</small>
+</footer>
+
+{% endblock body %}
