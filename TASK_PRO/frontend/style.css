@@ -1,0 +1,187 @@
+/* style.css */
+:root {
+    --bg-black: #0a0a0a;
+    --card-bg: #161616;
+    --text-main: #ffffff;
+    --text-dim: #a0a0a0;
+    --accent: #007bff; /* Electric Blue */
+    --accent-hover: #0056b3;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', -apple-system, sans-serif;
+}
+
+body {
+    background-color: var(--bg-black);
+    color: var(--text-main);
+    line-height: 1.6;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 10%;
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.logo span {
+    color: var(--accent);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-dim);
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--text-main);
+}
+
+/* Buttons */
+.auth-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+button {
+    cursor: pointer;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+#btn-login {
+    background: transparent;
+    color: var(--text-main);
+    border: 1px solid #333;
+    padding: 0.6rem 1.2rem;
+}
+
+#btn-logout {
+    background: transparent;
+    color: var(--text-main);
+    border: 1px solid #333;
+    padding: 0.6rem 1.2rem;
+    display: none;
+}
+
+#btn-login:hover {
+    background: #222;
+}
+
+#btn-signup {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+}
+
+.btn-signup:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+}
+
+/* Hero Section */
+.hero {
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 10%;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+}
+
+.hero h1 span {
+    background: linear-gradient(90deg, #007bff, #00d4ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+    color: var(--text-dim);
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+}
+
+/* Card styling */
+.card {
+    background-color: #151515;
+    border: 1px solid #2a2a2a;
+    color: #eaeaea;
+}
+
+.card-title {
+    color: #ffffff;
+}
+
+.card-text {
+    color: #ffffff;
+}
+
+/* Card footer */
+.card-footer {
+    background-color: transparent;
+}
+
+/* Buttons */
+.btn-outline-primary {
+    color: #4da3ff;
+    border-color: #4da3ff;
+}
+
+.btn-outline-primary:hover {
+    background-color: #4da3ff;
+    color: #000;
+}
+
+.btn-outline-danger {
+    color: #ff5c5c;
+    border-color: #ff5c5c;
+}
+
+.btn-outline-danger:hover {
+    background-color: #ff5c5c;
+    color: #000;
+}
+
+/* Badges */
+.badge {
+    font-weight: 500;
+}

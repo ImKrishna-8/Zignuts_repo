@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body onload="load_data()">
+
+    <nav class="navbar navbar-dark bg-dark px-4">
+        <!-- Logo -->
+        <a class="navbar-brand fw-bold" href="#">
+            Task<span class="text-primary">Pro</span>
+        </a>
+
+        <!-- Right Controls -->
+        <div class="d-flex align-items-center gap-2">
+
+            <!-- Auth Buttons -->
+            <button id="btn-login" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#loginmodal">
+                Log In
+            </button>
+
+            <button id="btn-signup" class="btn btn-outline-primary" data-bs-toggle="modal"
+                data-bs-target="#signupmodal">
+                Sign Up
+            </button>
+
+            <button id="btn-logout" class="btn btn-outline-danger" style="display:none;">
+                Log Out
+            </button>
+
+            <!-- Task Controls -->
+            <button id="sortdate" class="btn btn-outline-light" style="display:none;" onclick="sortByDueDate()">
+                Sort by Date
+            </button>
+
+            <input id="searchtitle" type="text" class="form-control form-control-sm" style="width:200px; display:none;"
+                placeholder="Search title..." onkeyup="searchTasks()">
+
+            <select id="filterpriority" class="form-select form-select-sm" style="width:150px; display:none;"
+                onchange="filterByPriority()">
+                <option value="">All Priority</option>
+                <option value="high">High</option>
+                <option value="medium">Medium</option>
+                <option value="low">Low</option>
+            </select>
+
+            <button id="createtask" class="btn btn-outline-success" style="display:none;" data-bs-toggle="modal"
+                data-bs-target="#createtaskmodal">
+                Create Task
+            </button>
+        </div>
+    </nav>
+
+
+
+    <!-- Modal for Create Task -->
+    <div class="modal fade" id="createtaskmodal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Create Task</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="mb-3">
+                        <label class="form-label">Title</label>
+                        <input type="text" id="task_title" class="form-control" placeholder="Task title">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Description</label>
+                        <textarea id="task_description" class="form-control" rows="4"
+                            placeholder="Task description"></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Due Date</label>
+                        <input type="date" id="task_due_date" class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Priority</label>
+                        <select id="task_priority" class="form-select">
+                            <option value="">Select priority</option>
+                            <option value="high">High</option>
+                            <option value="medium">Medium</option>
+                            <option value="low">Low</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Status</label>
+                        <select id="task_status" class="form-select">
+                            <option value="">Select status</option>
+                            <option value="pending">Pending</option>
+                            <option value="complete">Complete</option>
+                            <option value="rejected">Rejected</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button class="btn btn-primary" onclick="create_task()">Create Task</button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <!-- Modal for login-->
+    <div class="modal fade" id="loginmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Login</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="loginusername" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="username" name="loginusername"
+                            placeholder="Your username">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" name="loginpass"
+                            placeholder="Password">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="login_user()">Login</button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Modal for signup-->
+    <div class="modal fade" id="signupmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Signup</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="signup_username" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="signup_username" name="loginusername"
+                            placeholder="Your username">
+                    </div>
+                    <div class="mb-3">
+                        <label for="signup_email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="signup_email" name="loginusername"
+                            placeholder="Your email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="signup_password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="signup_password" name="loginpass"
+                            placeholder="Password">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="signup_user()">signup</button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Edit Task Modal -->
+    <div class="modal fade" id="editTaskModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Task</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+                    <input type="hidden" id="edit_task_id">
+
+                    <div class="mb-3">
+                        <label class="form-label">Title</label>
+                        <input type="text" id="edit_task_title" class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Description</label>
+                        <textarea id="edit_task_description" class="form-control" rows="4"></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Due Date</label>
+                        <input type="date" id="edit_task_due_date" class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Priority</label>
+                        <select id="edit_task_priority" class="form-select">
+                            <option value="high">High</option>
+                            <option value="medium">Medium</option>
+                            <option value="low">Low</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Status</label>
+                        <select id="edit_task_status" class="form-select">
+                            <option value="pending">Pending</option>
+                            <option value="complete">Complete</option>
+                            <option value="rejected">Rejected</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button class="btn btn-primary" onclick="updateTask()">Update Task</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container my-5">
+
+        <!-- Hero / Empty state -->
+        <div id="no-task-msg" style="display:block;">
+            <header class="hero text-center text-light">
+                <div class="hero-content">
+                    <h1>
+                        Organize your work <br>
+                        <span>at the speed of light.</span>
+                    </h1>
+                    <p>
+                        The ultimate task management tool designed for high-performance teams and focused individuals.
+                    </p>
+                </div>
+            </header>
+        </div>
+
+        <!-- Task cards -->
+        <div id="task-container" class="row g-4"></div>
+    </div>
+
+
+    <script src="script.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
