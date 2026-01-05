@@ -1,0 +1,76 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Logout</title>
+</head>
+
+<body>
+    <div id="loginmodule">    
+        Username:<input type="text" id="username">
+        password:<input type="password" id="password">
+        <button id="imp">Login</button>
+    </div>
+
+    <div id="logoutmodule">
+        <button id="logoutbtn">Logout</button>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+    crossorigin="anonymous"></script>
+<script>
+    $(function(){
+        if(localStorage.getItem('access')){
+            $('#logoutmodule').show()
+            $('#loginmodule').hide()
+            getdata()
+            
+        }
+        else{
+            $('#logoutmodule').hide()
+            $('#loginmodule').show()
+
+        }
+    })
+
+async function getdata() {
+    const response = await fetch('http://127.0.0.1:8000/api/v1/me',{
+        method:'GET',
+        headers:{
+            'Content-Type':'application/json',
+            'Authorization': 'Bearer '+localStorage.getItem('access')
+        }
+    })   
+    const data =await response.json()
+    console.log(data)
+}
+
+    $('#logoutbtn').click(()=>{
+        localStorage.removeItem('access')
+        localStorage.removeItem('refresh')
+        location.reload()
+    })
+
+    $('#imp').click(async()=>{
+
+        const response = await fetch('http://127.0.0.1:8000/api/v1/token/',{
+            method:'post',
+            headers:{
+                'Content-type':'application/json',
+            },
+            body:JSON.stringify({
+                username:$('#username').val(),
+                password:$('#password').val()
+            })
+        })
+        if(response.ok){
+            const data = await response.json()
+            localStorage.setItem('access',data['access'])
+            localStorage.setItem('refresh',data['refresh'])
+            location.reload()
+        }
+    })
+</script>
+
+</html>
