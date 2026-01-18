@@ -1,5 +1,3 @@
-
-
 function checkAuth() {
     const token = localStorage.getItem('access');
 
@@ -49,7 +47,6 @@ document.getElementById('btn-logout').addEventListener('click', () => {
 });
 
 // Login
-
 async function login_user() {
 
     const response = await fetch('http://127.0.0.1:8000/api/v1/token/', {
@@ -347,7 +344,7 @@ async function updateTask() {
 }
 
 
-
+// For extra purpose
 
 let allTasks = [];
 
