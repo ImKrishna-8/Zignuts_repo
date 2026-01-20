@@ -1,0 +1,321 @@
+/* ========== Google Fonts =========== */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+/* ========== CSS Variables =========== */
+:root {
+  --primary-color: #f94a3d;
+  --yellow-color: #ffcf03;
+  --black-color: #212244;
+  --default-color: #69697b;
+  --deep-yellow: #ff9401;
+  --yellow-color-1: #ffe507;
+  --red-color-1: #e83b2e;
+  --red-color-2: #ee3e32;
+  --light-red-color: #fdecec;
+  --grey-color: #eaeaea;
+  --grey-color-1: #f8f8f8;
+  --white-color: #fff;
+  --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: var(--default-color);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: var(--black-color);
+  line-height: 1.2;
+  font-weight: 500;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+li {
+  list-style-type: none;
+}
+
+section {
+  overflow: hidden;
+}
+
+p {
+  line-height: 3rem;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ========== Custom Classes =========== */
+.container {
+  max-width: 120rem;
+  padding: 0 3rem;
+}
+
+@media (min-width: 1500px) {
+  .container {
+    max-width: 135rem;
+  }
+}
+.d-flex {
+  display: flex;
+  align-items: center;
+}
+
+/* ========== Header =========== */
+
+/* ========== Footer =========== */
+.footer {
+  background: linear-gradient(145deg, rgba(249, 74, 61, 0.1) 60%, rgba(255, 229, 7, 0.1));
+  padding: 10rem 3rem 10rem;
+}
+.footer .row {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+}
+.footer .col:first-child .logo {
+  margin-bottom: 3rem;
+}
+.footer .col:first-child p {
+  margin-bottom: 3rem;
+  width: 70%;
+}
+.footer .col:first-child .icons {
+  margin-bottom: 2rem;
+}
+.footer .col:first-child .icon {
+  color: var(--white-color);
+  justify-content: center;
+  height: 3rem;
+  width: 3rem;
+  border-radius: 0.5rem;
+  background-color: #252525;
+  cursor: pointer;
+}
+.footer .col:first-child .icon:not(:last-child) {
+  margin-right: 1rem;
+}
+.footer .col:last-child {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.footer .col:last-child div {
+  display: flex;
+  flex-direction: column;
+}
+.footer .col:last-child div a {
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.footer .col:last-child h4 {
+  font-size: 1.8rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+}
+
+.footer-bottom {
+  background-color: var(--primary-color);
+  padding: 1.5rem 0;
+}
+.footer-bottom .row {
+  justify-content: space-between;
+}
+.footer-bottom .row p {
+  color: var(--white-color);
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 20rem 0 10rem;
+  }
+  .footer .col:first-child {
+    display: none;
+  }
+  .footer .row {
+    display: block;
+  }
+}
+@media (max-width: 567px) {
+  .footer .col:last-child {
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem 0;
+  }
+}
+
+/*# sourceMappingURL=styles.css.map */
+
+.pizza-card {
+    width: 280px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #ffffff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+}
+
+.pizza-card:hover {
+    transform: translateY(-5px);
+}
+
+.pizza-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.pizza-content {
+    padding: 15px;
+}
+
+.pizza-content h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.description {
+    font-size: 14px;
+    color: #555;
+    margin: 8px 0;
+}
+
+.pizza-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #d32f2f;
+}
+
+.order-btn {
+    background: #ff5722;
+    border: none;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.order-btn:hover {
+    background: #e64a19;
+}
+
+.pizza-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+/* ===== CART MODAL OVERLAY ===== */
+.cart-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Dark background */
+.cart-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+/* Modal card */
+.cart-modal-content {
+  position: relative;
+  background: #fff;
+  width: 420px;
+  max-width: 90%;
+  border-radius: 12px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+  overflow: hidden;
+  animation: scaleIn 0.25s ease;
+  z-index: 1;
+}
+
+/* Header */
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background: #f94a3d;
+  color: #fff;
+}
+
+/* Body */
+.cart-body {
+  padding: 16px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+/* Footer */
+.cart-footer {
+  padding: 16px;
+  border-top: 1px solid #eee;
+}
+
+.cart-total {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  font-size: 16px;
+}
+
+/* CTA Button */
+.checkout-btn {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  background: #f94a3d;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.checkout-btn:hover {
+  background: #c62828;
+}
+
+/* Close button */
+.cart-close {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Animation */
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
